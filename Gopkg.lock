@@ -446,17 +446,24 @@
   revision = "32c6aa80de5eb09d190ad284a8214a531c6bce57"
 
 [[projects]]
-  branch = "master"
-  digest = "1:423e244b01a2d7c36072f68f589643a41b814c1868865c2009b7bee49983ab04"
+  branch = "sgc-data-gen"
+  digest = "1:1b21945934f4a50f543f1ee62d2b6f22f247880bf86ce2fdece53a11c286a070"
   name = "github.com/influxdata/platform"
   packages = [
     ".",
     "logger",
     "models",
     "pkg/binaryutil",
+    "pkg/bloom",
     "pkg/bytesutil",
+    "pkg/data/gen",
+    "pkg/encoding/simple8b",
     "pkg/escape",
+    "pkg/file",
+    "pkg/limiter",
+    "pkg/metrics",
     "pkg/mmap",
+    "pkg/pool",
     "pkg/rhh",
     "pkg/slices",
     "pkg/snowflake",
@@ -467,11 +474,14 @@
     "telegraf/plugins",
     "telegraf/plugins/inputs",
     "telegraf/plugins/outputs",
+    "toml",
     "tsdb",
     "tsdb/cursors",
+    "tsdb/tsi1",
+    "tsdb/tsm1",
   ]
   pruneopts = "UT"
-  revision = "dc5616e3f9ed409490e465a02ee3f1da50ad2e13"
+  revision = "85faf2aafeda34c814a498b0a3b2481132f490cc"
 
 [[projects]]
   branch = "master"
@@ -1073,6 +1083,7 @@
     "github.com/influxdata/flux/values",
     "github.com/influxdata/influxql",
     "github.com/influxdata/platform/models",
+    "github.com/influxdata/platform/pkg/data/gen",
     "github.com/influxdata/platform/query/functions/inputs/storage",
     "github.com/influxdata/platform/storage/reads",
     "github.com/influxdata/platform/storage/reads/datatypes",

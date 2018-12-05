@@ -18,6 +18,7 @@ type Interface interface {
 
 type MetaClient interface {
 	Database(name string) *meta.DatabaseInfo
+	DropDatabase(name string) error
 	RetentionPolicy(database, name string) (rpi *meta.RetentionPolicyInfo, err error)
 	ShardGroupsByTimeRange(database, policy string, min, max time.Time) (a []meta.ShardGroupInfo, err error)
 	CreateRetentionPolicy(database string, spec *meta.RetentionPolicySpec, makeDefault bool) (*meta.RetentionPolicyInfo, error)

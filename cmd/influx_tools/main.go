@@ -10,6 +10,8 @@ import (
 	"github.com/influxdata/influxdb/cmd"
 	"github.com/influxdata/influxdb/cmd/influx_tools/compact"
 	"github.com/influxdata/influxdb/cmd/influx_tools/export"
+	genexec "github.com/influxdata/influxdb/cmd/influx_tools/generate/exec"
+	geninit "github.com/influxdata/influxdb/cmd/influx_tools/generate/init"
 	"github.com/influxdata/influxdb/cmd/influx_tools/help"
 	"github.com/influxdata/influxdb/cmd/influx_tools/importer"
 	"github.com/influxdata/influxdb/cmd/influx_tools/server"
@@ -65,9 +67,19 @@ func (m *Main) Run(args ...string) error {
 			return fmt.Errorf("export failed: %s", err)
 		}
 	case "import":
-		cmd := importer.NewCommand(&ossServer{logger: zap.NewNop()})
-		if err := cmd.Run(args); err != nil {
+		c := importer.NewCommand(&ossServer{logger: zap.NewNop()})
+		if err := c.Run(args); err != nil {
 			return fmt.Errorf("import failed: %s", err)
+		}
+	case "gen-init":
+		c := geninit.NewCommand(&ossServer{logger: zap.NewNop()})
+		if err := c.Run(args); err != nil {
+			return fmt.Errorf("gen-init failed: %s", err)
+		}
+	case "gen-exec":
+		c := genexec.NewCommand(&ossServer{logger: zap.NewNop()})
+		if err := c.Run(args); err != nil {
+			return fmt.Errorf("gen-exec failed: %s", err)
 		}
 	default:
 		return fmt.Errorf(`unknown command "%s"`+"\n"+`Run 'influx-tools help' for usage`+"\n\n", name)
